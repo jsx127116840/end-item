@@ -1,0 +1,27 @@
+server:
+  port: 9989
+  context-path: /enditem
+  jsp-servlet:
+    init-parameters:
+      development: true
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: hr
+    password: jsxxxdd000
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  mvc:
+    view:
+      prefix: /
+      suffix:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+
+mybatis:
+  type-aliases-package: com.baizhi.entity
+
