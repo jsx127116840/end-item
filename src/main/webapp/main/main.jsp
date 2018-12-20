@@ -5,9 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>持名法州主页</title>
 <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">   
-<link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">   
+<link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>   
-<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>  
+<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.edatagrid.js"></script>
+    <script type="text/javascript" src="../js/datagrid-detailview.js"></script>
 <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 	<!--菜单处理-->
@@ -26,7 +29,7 @@
     	<div style="text-align: center;font-size:15px; color: #FAF7F7;font-family: 楷体">&copy;百知教育 htf@zparkhr.com.cn</div>
     </div>   
        
-    <div data-options="region:'west',title:'导航菜单',split:true,href:'${pageContext.request.contextPath }/left.jsp'"
+    <div data-options="region:'west',title:'导航菜单',split:true,href:'${pageContext.request.contextPath }/main/left.jsp'"
          style="width:220px;">
 
     </div>   

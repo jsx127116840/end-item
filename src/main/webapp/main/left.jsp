@@ -76,6 +76,7 @@ function addTab(node) {
         title: node.title,
         //content: '<iframe scrolling="auto" frameborder="0" src="${pageContext.request.contextPath}'+ node.url +'" style="width:100%;height:600px;"></iframe>',
         closable: true,
+        href: "${pageContext.request.contextPath}/" + node.url,
         tools: [{
             iconCls: 'icon-mini-refresh',
             handler: function () {
