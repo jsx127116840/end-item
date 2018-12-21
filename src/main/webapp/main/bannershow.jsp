@@ -5,7 +5,9 @@
 
 
             $("#bannershow").edatagrid({
+
                 fitColumns: true,
+
                 url: "${pageContext.request.contextPath }/banner/showBanner?time=" + new Date().getTime(),
                 updateUrl: "${pageContext.request.contextPath }/banner/updateBanner?time=" + new Date().getTime(),
                 toolbar: "#bannershowtool",
@@ -28,7 +30,7 @@
                     }
 
                     return "<div style='background-color:lightblue'><table ><tr>" +
-                        "<td rowspan=4 style='border:2'><img src='${pageContext.request.contextPath }/" + rowData.img_path + "' style='height:100px;''></td>" +
+                        "<td rowspan=4 style='border:2'><img src='${pageContext.request.contextPath }/main/shouye/" + rowData.img_path + "' style='height:100px;''></td>" +
                         "<td style='border:2'>" +
                         "<p>|  图片标题: " + rowData.title + "</p>" +
                         "<p>|  状态: " + status + "</p>" +
@@ -40,15 +42,16 @@
                         "</td>" +
                         "</tr></table></div>";
                 }
+
             });
 
 
             /*添加  */
-            $("#addwindow").dialog({
+            $("#addbannerwindow").dialog({
                 title: "添加",
                 width: 400,
                 height: 200,
-                toolbar: "#inpubtn",
+                toolbar: "#addbannerbtn",
                 closed: true,
                 href: "${pageContext.request.contextPath }/main/addbanner.jsp",
                 modal: true,
@@ -60,13 +63,13 @@
                 iconCls: "icon-add",
                 onClick: function () {
 
-                    $("#addwindow").dialog("open");
+                    $("#addbannerwindow").dialog("open");
                 }
             });
-            $("#sclosebtn").linkbutton({
+            $("#bclosebtn").linkbutton({
                 iconCls: "icon-no",
                 onClick: function () {
-                    $("#addwindow").dialog("close");
+                    $("#addbannerwindow").dialog("close");
                 }
             });
             //修改
@@ -134,9 +137,9 @@
 		</script>
 
    
-  <div id="show">
+  <div>
     <table class="table" id="bannershow">
-  
+
     				<thead>
 						<tr class="table_header">
 							<th data-options="field:'id',width:1">ID</th>
@@ -156,10 +159,10 @@
 						<a id="bdelbtn">删除</a>
 						<a id="bsavebtn">保存</a>
 					</div>
-				<div id="add">	
-						<div id="addwindow"></div>
-						<div id="inpubtn">
-						<a id="sclosebtn">关闭</a>
+				<div id="addbanner">
+						<div id="addbannerwindow"></div>
+						<div id="addbannerbtn">
+						<a id="bclosebtn">关闭</a>
 						</div>
     			</div>
 

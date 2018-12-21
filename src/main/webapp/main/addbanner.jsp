@@ -89,7 +89,7 @@
 			图片标题：<input id="addBannertitle" name="title"/><br/>
 			描述：<input id="addBannerdescription" name="description"/><br/>
 
-			选择图片：<input type="file" name="mf"/><br/>
+			选择图片：<input type="file" name="mf"/><br/>4
 			是否立即轮播：<input type="radio" id="upstatus" name="status" value="true" checked="checked"/>轮播<input type="radio"
                                                                                                             id="updstatus"
                                                                                                             name="status"

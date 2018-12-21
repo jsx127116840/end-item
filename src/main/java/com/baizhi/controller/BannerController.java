@@ -43,8 +43,8 @@ public class BannerController {
         String path = date.getTime() + "-" + mf.getOriginalFilename();
         File file = new File(realPath + "/" + path);
         mf.transferTo(file);
-        
-        Banner banner1 = (Banner) hs.getAttribute("ibanner");
+    
+    
         String ipath = "/main/shouye/" + path;
         banner.setImg_path(ipath);
         banner.setPub_date(date);

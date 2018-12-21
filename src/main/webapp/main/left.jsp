@@ -40,7 +40,7 @@ $(function () {
                             //iconCls: icon-blank,
                             //在树节点加图片
                             formatter: function (node) {
-                                return '<img src="images/admin.gif"/>' + node.title;
+                                return '<img src="${pageContext.request.contextPath }/main/image/A2.jpg" style="height: 17px;width: 17px"/>' + node.title;
                             },
                             //lines: true, //显示虚线效果
                             onClick: function (node) { // 在用户点击一个子节点即二级菜单时触发addTab()方法,用于添加tabs
@@ -76,7 +76,7 @@ function addTab(node) {
         title: node.title,
         //content: '<iframe scrolling="auto" frameborder="0" src="${pageContext.request.contextPath}'+ node.url +'" style="width:100%;height:600px;"></iframe>',
         closable: true,
-        href: "${pageContext.request.contextPath}/" + node.url,
+        href: "${pageContext.request.contextPath}/main/" + node.url,
         tools: [{
             iconCls: 'icon-mini-refresh',
             handler: function () {
