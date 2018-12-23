@@ -30,7 +30,7 @@
                             return $("#addBannerform").form("validate");
                         },
                         success: function () {
-                            $("#addwindow").dialog("close");
+                            $("#addbannerwindow").dialog("close");
                             $("#bannershow").datagrid("reload");
 
                             $.messager.show({
@@ -91,9 +91,9 @@
 
 			选择图片：<input type="file" name="mf"/><br/>4
 			是否立即轮播：<input type="radio" id="upstatus" name="status" value="true" checked="checked"/>轮播<input type="radio"
-                                                                                                            id="updstatus"
-                                                                                                            name="status"
-                                                                                                            value="false"/>暂不<br/>
+																											id="updstatus"
+																											name="status"
+																											value="false"/>暂不<br/>
 			
 			<a id="addBannerBtn">添加</a>
 			<a id="resetBtn">重置</a>

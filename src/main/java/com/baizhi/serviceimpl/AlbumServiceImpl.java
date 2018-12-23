@@ -23,6 +23,9 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public AlbumPageDto queryAllByPage(Integer page, Integer rows) {
         List<Album> list = albumMapper.selectAlbumByPage(page, rows);
+        for (Album album : list) {
+            System.out.println(album);
+        }
         Integer total = albumMapper.selectCount(new Album());
         AlbumPageDto albumPageDto = new AlbumPageDto();
         albumPageDto.setRows(list);

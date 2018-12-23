@@ -21,6 +21,9 @@ spring:
     encoding:
       force: true
       charset: UTF-8
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 mybatis:
   type-aliases-package: com.baizhi.entity

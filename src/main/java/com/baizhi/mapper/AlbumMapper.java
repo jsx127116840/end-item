@@ -11,4 +11,6 @@ public interface AlbumMapper extends Mapper<Album> {
      * 分页表连接
      */
     public List<Album> selectAlbumByPage(@Param("page") Integer page, @Param("rows") Integer rows);
+    
+    public List<Album> selectNewAlbum();
 }

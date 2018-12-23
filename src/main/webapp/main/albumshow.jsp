@@ -20,26 +20,39 @@
                 pageList: [2, 1, 10, 20],
                 pageNumber: 1,
                 idField: 'id',
-                treeField: 'title'
+                treeField: 'title',
+                onDblClickRow: function (row) {
+
+                    var lever = $("#albumshow").treegrid("getLevel", row.id);
+
+                    if (lever != 1) {
+
+                        $("#audio").prop("src", "${pageContext.request.contextPath}/main/yinpin/" + row.url);
+
+                    } else {
+                        alert("请双击章节而非专辑");
+                    }
+                }
             });
 
 
-            /*添加  */
+            /*添加专辑  */
             $("#addalbumwindow").dialog({
                 title: "添加",
                 width: 400,
                 height: 200,
                 toolbar: "#addalbumbtn",
                 closed: true,
-                href: "${pageContext.request.contextPath }/main/addbanner.jsp",
+                href: "${pageContext.request.contextPath }/main/addalbum.jsp",
                 modal: true,
                 cache: false,
                 iconCls: "icon-man"
             });
 
-            $("#aaddbtn").linkbutton({
+            $("#aaddalbumbtn").linkbutton({
                 iconCls: "icon-add",
                 onClick: function () {
+
 
                     $("#addalbumwindow").dialog("open");
                 }
@@ -50,9 +63,48 @@
                     $("#addalbumwindow").dialog("close");
                 }
             });
+
+            //添加章节
+
+
+            $("#aaddchapterbtn").linkbutton({
+                iconCls: "icon-add",
+                onClick: function () {
+                    var row = $("#albumshow").treegrid("getSelected");
+                    if (row != null) {
+                        var lever = $("#albumshow").treegrid("getLevel", row.id);
+
+                        if (lever != 1) {
+                            alert("请选择专辑而非章节");
+                        } else {
+                            $("#addchapterwindow").dialog({
+                                title: "添加",
+                                width: 400,
+                                height: 200,
+                                toolbar: "#addchapterbtn",
+                                closed: true,
+                                href: "${pageContext.request.contextPath }/main/addchapter.jsp",
+                                modal: true,
+                                cache: false,
+                                iconCls: "icon-man",
+                                queryParams: {"id": row.id}
+                            });
+                            $("#addchapterwindow").dialog("open");
+                        }
+                    } else {
+                        alert("请选中一行");
+
+                    }
+                }
+            });
+            $("#cclosebtn").linkbutton({
+                iconCls: "icon-no",
+                onClick: function () {
+                    $("#addchapterwindow").dialog("close");
+                }
+            });
+
             //查看详情
-
-
             $("#ashowmessagebtn").linkbutton({
                 iconCls: "icon-more",
                 onClick: function () {
@@ -105,14 +157,47 @@
                 }
             });
 
+            //下载
+            $("#downloadchapterbtn").linkbutton({
+                iconCls: "icon-no",
+                onClick: function () {
+                    var row = $("#albumshow").treegrid("getSelected");
+                    if (row != null) {
+                        var lever = $("#albumshow").treegrid("getLevel", row.id);
+
+                        if (lever != 1) {
+
+                            $("#downloadchapterbtn").prop("href", "${pageContext.request.contextPath }/file/download?fname=" + row.url);
+
+                        } else {
+                            alert("请选择章节而非专辑");
+                        }
+                    } else {
+                        alert("请选中章节");
+
+                    }
+
+
+                }
+            });
+
+
 
         });
 
-        function status(value, row, index) {
-            if (value) {
-                return "轮播中";
+        function size(value, row, index) {
+
+            if (value / 1024 > 1) {
+                if ((value / 1024) / 1024 > 1) {
+                    return "" + (value / 1024) / 1024 + "MB"
+                } else {
+                    return "" + value / 1024 + "kb"
+                }
+
+            } else if (value / 1024 < 1) {
+                return value + "B";
             } else {
-                return "未轮播";
+                return "";
             }
 
         }
@@ -125,12 +210,12 @@
    
   <div>
     <table class="table" id="albumshow">
-  
+                    <audio id="audio" controls="controls" style="width: 80%"></audio>
     				<thead>
 						<tr class="table_header">
 
 							<th data-options="field:'title',width:1">章节名</th>
-							<th data-options="field:'size',width:1 ">大小</th>
+							<th data-options="field:'size',width:1,formatter:size ">大小</th>
 							<th data-options="field:'url',width:1 ">文件名</th>
 							<th data-options="field:'upload_date',width:1 ">上传日期</th>
 							<th data-options="field:'duration',width:1 ">持续时间</th>
@@ -141,13 +226,20 @@
 
 					<div id="albumshowtool">
 						<a id="ashowmessagebtn">查看详情</a>
-						<a id="aaddbtn">添加</a>
-
+						<a id="aaddalbumbtn">添加专辑</a>
+                        <a id="aaddchapterbtn">添加章节</a>
+						<a id="downloadchapterbtn" href="">下载章节</a>
 					</div>
 				<div id="addalbum">	
 						<div id="addalbumwindow"></div>
 						<div id="addalbumbtn">
 						<a id="aclosebtn">关闭</a>
+						</div>
+    			</div>
+                <div id="addchapter">
+						<div id="addchapterwindow"></div>
+						<div id="addchapterbtn">
+
 						</div>
     			</div>
 				<div id="ashowmessage">

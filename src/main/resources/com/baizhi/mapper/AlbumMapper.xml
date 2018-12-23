@@ -29,7 +29,15 @@
     <select id="selectAlbumByPage" resultMap="album">
 
 	<!-- 	select a.*,a.id aid,a.title atitle,c.*,c.id cid,c.title ctitle from ed_album a join ed_chapter c on a.id=c.album_id  limit ${(page-1)*rows},#{rows}  -->
-        select a.*,a.id aid,a.title atitle,c.*,c.id cid,c.title ctitle from	 (select  * from ed_album limit ${(page-1)*rows},#{rows}) a join ed_chapter c on a.id=c.album_id
+        select a.*,a.id aid,a.title atitle,c.*,c.id cid,c.title ctitle from	 (select  * from ed_album ORDER BY pub_date DESC limit ${(page-1)*rows},#{rows}) a left join ed_chapter c on a.id=c.album_id  ORDER BY a.pub_date DESC
    </select>
 
+    <!-- 查当前页的数据行 -->
+    <select id="selectNewAlbum" resultMap="album">
+
+
+        select a.*,a.id aid,a.title atitle
+        from ed_album a
+        where a.id not in (select album_id from ed_chapter)
+   </select>
 </mapper>

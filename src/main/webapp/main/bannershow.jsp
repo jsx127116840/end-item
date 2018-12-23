@@ -112,9 +112,17 @@
             $("#bsavebtn").linkbutton({
                 iconCls: "icon-save",
                 onClick: function () {
-                    var row = $("#bannershow").edatagrid("getSelected");
                     $("#bannershow").edatagrid("saveRow");
-                    $("#bannershow").edatagrid("reload");
+                    var row = $("#bannershow").edatagrid("getSelected");
+                    $.ajax({
+                        type: "GET",//请求⽅式
+                        url: "${pageContext.request.contextPath }/banner/updateBanner?time=" + new Date().getTime(),//请求路径
+                        data: "id=" + row.id + "&status=" + row.status,//请求参数
+                        dataType: "JSON",//预期服务器的响应格式
+                        success: function (result) {
+                            $("#bannershow").edatagrid("reload");
+                        }
+                    });
 
 
                 }
@@ -165,4 +173,3 @@
 						<a id="bclosebtn">关闭</a>
 						</div>
     			</div>
-

@@ -40,7 +40,7 @@ public class BannerServiceImpl implements BannerService {
     
     @Override
     public void updateBanner(Banner banner) {
-        bannerMapper.updateByPrimaryKey(banner);
+        bannerMapper.updateByPrimaryKeySelective(banner);
     }
     
     @Override
